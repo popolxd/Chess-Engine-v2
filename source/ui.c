@@ -18,19 +18,16 @@ void InitUIInfo(GameState* gs, UIInfo* UIInfo)
     pthread_cond_init(&cond, NULL);
 
     UIInfo->engineColor = 0;
-    UIInfo->engineStatus = 0;
+
+    if (UIInfo->engineColor == gs->wtm) {
+        UIInfo->engineStatus = 1;
+    } else {
+        UIInfo->engineStatus = 0;
+        UIInfo->allPosMovesLen = GenAllPosMoves(gs, UIInfo->allPosMoves, 0);
+    } 
 
     UIInfo->selectedSq = -1;
     UIInfo->lastMove = (Move){0, 0};
-
-    if (UIInfo->engineColor) {
-        uint8_t depth = 5;
-        Output output = Minimax(gs, depth, -32768, 32767);
-
-        UIInfo->lastMove = output.bestMove;
-        MakeMove(gs, output.bestMove);
-    }
-    UIInfo->allPosMovesLen = GenAllPosMoves(gs, UIInfo->allPosMoves, 0);
 
     UIInfo->posMovesLen = 0;
 }

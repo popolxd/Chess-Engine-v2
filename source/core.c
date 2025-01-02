@@ -111,7 +111,7 @@ void InitGameStateFromFEN(GameState* gs, char* fen)
     while (fen[i] != ' ') {
 
         if (fen[i] > 47 && fen[i] < 58) { // cislo
-            xPos -= fen[i] - 47;
+            xPos -= fen[i] - 48;
 
         } else if (fen[i] == '/') {
             yPos--;
@@ -188,7 +188,7 @@ void InitGameStateFromFEN(GameState* gs, char* fen)
     else {
         uint8_t col = 104 - fen[i];
         i++;
-        uint8_t row = fen[i] - 1;
+        uint8_t row = fen[i] - 49;
 
         gs->enPassantSq = row*8 + col;
     }

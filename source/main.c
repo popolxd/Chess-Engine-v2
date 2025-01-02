@@ -26,13 +26,15 @@ int main(void)
     SetWindowSize(SCREEN_WIDTH, SCREEN_HEIGHT);
     ToggleFullscreen();
 
+    FillLookups();
+
     GameState gameState;
-    InitGameStateFromFEN(&gameState, "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+    InitDefaultGameState(&gameState);
+    // InitGameStateFromFEN(&gameState, "r1b1qrk1/ppp2ppp/2n5/b7/2B1PBn1/P1N2N2/1PP2PPP/R2Q1RK1 b - - 2 12");
 
     UIInfo UIInfo;
     InitUIInfo(&gameState, &UIInfo);
 
-    FillLookups();
     InitTextures();
 
     while (!WindowShouldClose()) {
